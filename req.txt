@@ -3,3 +3,5 @@ grpcio-tools
 protobuf
 six
 psutil
+python-dotenv
+pyTelegramBotAPI

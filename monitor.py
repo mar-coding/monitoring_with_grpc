@@ -26,6 +26,9 @@ if args.interval >= 2:
     args.interval -= 2
 
 def main():
+    send_data(data_gather())
+
+def data_gather():
     # Hostname Info
     hostname = socket.gethostname()
 
@@ -35,14 +38,14 @@ def main():
 
     # Memory Info
     memory_stats = psutil.virtual_memory()
-    memory_total = memory_stats.total / 1e+6
-    memory_used = memory_stats.used / 1e+6
+    memory_total = memory_stats.total / 1e+9
+    memory_used = memory_stats.used / 1e+9
     memory_used_percent = memory_stats.percent
 
     # Disk Info
     disk_info = psutil.disk_usage('/')
-    storage_total = (disk_info.total) / 1e+6
-    storage_used = (disk_info.used) / 1e+6
+    storage_total = (disk_info.total) / 1e+9
+    storage_used = (disk_info.used) / 1e+9
     storage_used_percent = disk_info.percent
 
     # Platform Info
@@ -77,14 +80,15 @@ def main():
     }
 
     data = json.dumps(machine)
-    send_data(data)
-
-
+    return data
 
 def send_data(data):
     username = "data"
     s = Sender(data)
     s.send_msg(data)
+
+def send_telegram():
+    return data_gather()
 
 
 if __name__ == "__main__":
