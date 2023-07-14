@@ -24,12 +24,13 @@ class Client:
 
     def __listen_for_messages(self):
         for note in self.conn.ChatStream(chat.Empty()):
+            # if note.name != self.username:
             print("R[{}] {}".format(note.name, note.message))
             self.chat_list.insert(END, "[{}] {}\n".format(note.name, note.message))
 
     def send_message(self, event):
         message = self.entry_message.get()
-        if message is not '':
+        if message != '':
             n = chat.Note()
             n.name = self.username
             n.message = message

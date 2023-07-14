@@ -19,3 +19,15 @@ python server.py
 ```
 python monitor.py
 ```
+
+### for telegram
+
+1. create a telegram bot in '@botfather' and get your bot's token.
+
+2. create '.env' file and write this to it.(must be done in root directory):
+```
+TOKEN=bottoken
+```
+
+# To Do
+- [ ] Solve the timing problem to logging become realtime

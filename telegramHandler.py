@@ -9,11 +9,6 @@ import telebot
 import datetime
 import json
 import traceback
-# import pb
-
-# from telegram import __version__ as TG_VER
-# from telegram import Bot
-# from telegram.error import Forbidden, NetworkError
 from monitor import send_telegram
 
 
@@ -50,7 +45,7 @@ def help_command(message):
 def exchange_command(message):
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
-        telebot.types.InlineKeyboardButton('test server', callback_data='get-test-server')
+        telebot.types.InlineKeyboardButton('local server', callback_data='get-test-server')
     )
     
     bot.send_message(message.chat.id, 'Click on the server name:', reply_markup=keyboard)

@@ -32,13 +32,17 @@ class ChatServer(rpc.ChatServerServicer):
 
 
 if __name__ == '__main__':
-    port = 11912
-    # 10 clients can connect to server at the same time.
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    rpc.add_ChatServerServicer_to_server(ChatServer(), server)
-    
-    print('Starting server. Listening...')
-    server.add_insecure_port('[::]:' + str(port))
-    server.start()
-    while True:
-        pass
+    try:
+        port = 11912
+        # 10 clients can connect to server at the same time.
+        server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+        rpc.add_ChatServerServicer_to_server(ChatServer(), server)
+        
+        print('Starting server.\nListening on port ' + str(port) + "...")
+        server.add_insecure_port('[::]:' + str(port))
+        server.start()
+        while True:
+            pass
+    except KeyboardInterrupt:
+        server.stop(grace=1)
+        print('\nThe server has been shutdown.')

@@ -21,10 +21,6 @@ parser.add_argument('-a', '--attempts', default=30, type=int, help='Attempts to 
 parser.add_argument('-t', '--timeout', default=60, type=int, help='Timeout between resend attempts (Seconds. Defaults to 60. If attempts is reached script will die)')
 args = parser.parse_args()
 
-# Factor in sleep for bandwidth checking
-if args.interval >= 2:
-    args.interval -= 2
-
 def main():
     send_data(data_gather())
 
@@ -84,7 +80,7 @@ def data_gather():
 
 def send_data(data):
     username = "data"
-    s = Sender(data)
+    s = Sender(username)
     s.send_msg(data)
 
 def send_telegram():
@@ -92,6 +88,14 @@ def send_telegram():
 
 
 if __name__ == "__main__":
-    while True:
-        main()
-        time.sleep(args.interval)
+    try:
+        while True:
+            main()
+            temp = 5
+            if args.interval -1 <= 0 :
+                temp = 1 - 1
+            else:
+                temp = args.interval - 1
+            time.sleep(temp)
+    except KeyboardInterrupt:
+        print("\nStopped.")
