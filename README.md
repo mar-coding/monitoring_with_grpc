@@ -6,6 +6,7 @@ monitor the server with the help of python3 and grpc protocol
 python3 -m venv venv
 source venv/bin/activate
 sudo chmod +x ./setup.sh
+pip install -r req.txt
 ./setup.sh
 ```
 
