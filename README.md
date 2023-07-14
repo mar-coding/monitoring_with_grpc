@@ -3,6 +3,8 @@ monitor the server with the help of python3 and grpc protocol
 
 ## run(both in client and server)
 ```
+git clone https://github.com/mar-coding/monitoring_with_grpc.git
+cd monitoring_with_grpc
 python3 -m venv venv
 source venv/bin/activate
 sudo chmod +x ./setup.sh
