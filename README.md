@@ -30,6 +30,10 @@ python monitor.py
 ```
 TOKEN=bottoken
 ```
+3. run below code
+```
+python telegramHandler.py
+```
 
 # To Do
 - [ ] Solve the timing problem to logging become realtime
