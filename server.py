@@ -1,4 +1,6 @@
 from concurrent import futures
+from multiprocessing import cpu_count
+
 
 import grpc
 import time
@@ -35,7 +37,7 @@ if __name__ == '__main__':
     try:
         port = 11912
         # 10 clients can connect to server at the same time.
-        server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+        server = grpc.server(futures.ThreadPoolExecutor(max_workers=cpu_count()))
         rpc.add_ChatServerServicer_to_server(ChatServer(), server)
         
         print('Starting server.\nListening on port ' + str(port) + "...")
